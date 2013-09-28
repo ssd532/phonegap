@@ -1,20 +1,32 @@
-<title>Home</title>    
-<script charset="utf-8" type="text/javascript">
-function myGetTime() {
-    var dd = new Date();
-    var hh = dd.getHours();
-    var mm = dd.getMinutes();
-    var ss = dd.getSeconds();
-    alert("The time is now: " + hh + ":" + mm + ":" + ss);
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function startTime()
+{
+var today=new Date();
+var h=today.getHours();
+var m=today.getMinutes();
+var s=today.getSeconds();
+// add a zero in front of numbers<10
+m=checkTime(m);
+s=checkTime(s);
+document.getElementById('txt').innerHTML=h+":"+m+":"+s;
+t=setTimeout(function(){startTime()},500);
 }
 
-document.getElementById("btGetDate").onclick = myGetTime;
-
+function checkTime(i)
+{
+if (i<10)
+  {
+  i="0" + i;
+  }
+return i;
+}
 </script>
-<form id="form1">
-<h1>
-Hello PhoneGap!</h1>
-</form>
-<p><button id="btGetDate">Click Me</button> to show time.</p>
+</head>
 
-
+<body onload="startTime()">
+<div id="txt"></div>
+</body>
+</html>
